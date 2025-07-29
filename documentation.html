@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenCore Lite Documentation</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#037602',secondary:'#e0f2e0'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        body { font-family: 'Montserrat', sans-serif; }
+        .doc-section h2, .doc-section h3, .doc-section h4 { margin-top: 2rem; }
+        .doc-section ul { list-style: disc; margin-left: 2rem; }
+        .doc-section code { background: #f3f3f3; padding: 2px 6px; border-radius: 4px; }
+        .kw { color: #037602; font-weight: 600; }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+    <!-- Navigation -->
+    <nav class="w-full bg-white shadow-sm py-4 px-6 fixed top-0 z-50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-['Pacifico'] text-primary">GenCore Lite</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html#features" class="font-medium hover:text-primary transition-colors">Features</a>
+                <a href="documentation.html" class="font-medium text-primary transition-colors">Documentation</a>
+                <a href="index.html#demo" class="font-medium hover:text-primary transition-colors">Demo</a>
+                <a href="index.html#how-it-works" class="font-medium hover:text-primary transition-colors">How it works</a>
+            </div>
+            <a href="https://github.com/MrmaderatorYT/GenCore_lite/releases/download/v0.1.2-OEAP/app-debug.apk" class="bg-primary text-white px-6 py-2 !rounded-button font-medium hover:bg-opacity-90 transition-all whitespace-nowrap">Download</a>
+        </div>
+    </nav>
+    <main class="max-w-3xl mx-auto px-6 pt-32 pb-16 doc-section">
+        <h1 class="text-4xl font-bold mb-6 text-primary">GenCore Lite Documentation</h1>
+        <section class="mb-8">
+            <p>GenCore Lite is an app which can help with creating novel apps for Android OS.</p>
+        </section>
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-2">Requirements</h2>
+            <ul class="list-disc ml-6">
+                <li><b>Termux</b> app with access in reading and writing to device storage</li>
+                <li>Android 7+</li>
+            </ul>
+        </section>
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-2">Creating a New App</h2>
+            <p>To create a new app, press the "new" button which opens a new page of the application. On the screen you should see 3 inputs:</p>
+            <ul class="list-disc ml-6">
+                <li><b>name</b> — the app name which will be displayed in the app and on the main page of the novel.</li>
+                <li><b>package</b> — the app's package name, which organizes classes for every program on your phone. We highly recommend using a new package name for each project. Usually, the package is your website written in reverse, e.g., <u>com.ccs</u>.</li>
+                <li><b>version</b> — a designation for different variants of a program.</li>
+            </ul>
+        </section>
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-2">Editor Page</h2>
+            <p>After creating a project, you will be redirected to the editor screen. On the left side, there are four files used for rewriting game screens:</p>
+            <ul class="list-disc ml-6">
+                <li><b>messages.gc_l</b> — main file which contains dialogs etc. of the novel.</li>
+                <li><b>colors.gc_l</b> — currently not available.</li>
+                <li><b>main_screen.gc_l</b> — start screen of the game.</li>
+                <li><b>settings_screen.gc_l</b> — settings screen of the game.</li>
+            </ul>
+        </section>
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-2">Script Syntax</h2>
+            <p>The game core has its own scripting language, which during compiling will be rewritten into Java code. All keywords which can help you with the development of your own visual novel:</p>
+            <ul class="list-disc ml-6">
+                <li><span class="kw">SCENE</span> — marks the beginning of a new scene. Each scene has a unique number (e.g., <span class="kw">SCENE 1</span>, <span class="kw">SCENE 2</span>, etc.).</li>
+                <li><span class="kw">BACKGROUND</span> — specifies the image that will be used as the background for the current scene. For example, <code><span class="kw">BACKGROUND</span> hall.png</code> means the background will be the image hall.png.</li>
+                <li><span class="kw">MUSIC</span> — specifies the music file that will play during the scene. For example, <code><span class="kw">MUSIC</span> intro.mp3</code> means the music from the file intro.mp3 will play.</li>
+                <li><span class="kw">DIALOG</span> — marks a dialogue between characters. After this keyword, the character’s name and their line are specified. For example, <code><span class="kw">DIALOG</span> John: Hello?</code> means the character named John says, "Hello".</li>
+                <li><span class="kw">GOTO</span> — indicates a transition to another scene. For example, <code><span class="kw">GOTO</span> 2</code> means that after the current scene ends, the game will transition to Scene 2.</li>
+                <li><span class="kw">SOUND</span> — specifies a sound file that will play during the scene. For example, <code><span class="kw">SOUND</span> intro.wav</code> means the sound from the file intro.wav will play.</li>
+                <li><span class="kw">END</span> — marks the end of the current scene. After this keyword, the scene concludes, and the game moves to the next scene or ends if it’s the final scene.</li>
+                <li><span class="kw">#</span> — standard comment which will always remain a comment in the code.</li>
+                <li><span class="kw">CHOICE</span> — represents a choice the player must make. After this keyword, a list of options is provided.</li>
+            </ul>
+        </section>
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-2">Example</h2>
+<pre class="bg-gray-100 rounded-lg p-4 overflow-x-auto text-sm"><code id="script-example">SCENE 1
+BACKGROUND hall.png
+MUSIC intro.mp3
+DIALOG John: Hello
+GOTO 2
+END
+SCENE 2
+BACKGROUND hall.png
+DIALOG Alice: You came!
+SOUND intro.wav
+GOTO 3
+END
+SCENE 3
+BACKGROUND hall.png
+DIALOG John: Yes, so what will we do now?
+END</code></pre>
+        </section>
+        <footer class="mt-16 border-t pt-8 text-center text-gray-500">
+            &copy; 2025 CyberCraft Studio
+        </footer>
+    </main>
+    <script>
+    // Підсвітка ключових слів у прикладі
+    document.addEventListener('DOMContentLoaded', function() {
+        const keywords = [
+            'SCENE', 'BACKGROUND', 'MUSIC', 'DIALOG', 'GOTO', 'SOUND', 'END', 'CHOICE', '#'
+        ];
+        const example = document.getElementById('script-example');
+        if (example) {
+            let html = example.innerHTML;
+            keywords.forEach(kw => {
+                // Підсвічуємо тільки ключове слово на початку рядка або після \n
+                html = html.replace(new RegExp('(^|\\n)(' + kw.replace(/([.*+?^=!:${}()|[\]\/\\])/g, "\\$1") + ')(?= |:|$)', 'g'),
+                    `$1<span class="kw">$2</span>`);
+            });
+            example.innerHTML = html;
+        }
+    });
+    </script>
+</body>
+</html> 
